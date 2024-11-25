@@ -20,16 +20,10 @@ const FastFoodOrderApp = () => {
       // If the item exists, increment its count by 1
       const updatedOrderList = orderList.map((item) =>
         item.id === food.id ? { ...item, count: item.count + 1 } : item 
-      // ...item is a spread operator. It is used to create a shallow copy of an object or array
-      // then overrides the count property of the item object by incrementing it by 1
       );
       setOrderList(updatedOrderList);
     } else {
-      // If the item does not exist, add it to the orderList with a count of 1
       setOrderList([...orderList, { ...food, count: 1 }]);
-      // We avoid using the push method in React state updates because react cannot detect changes to re-render the component - in state and properly react trigger re-renders. 
-      // push modifies the original array and is not suitable for React state updates.
-      // The spread operator (...) creates a new array, ensuring immutability and proper reactivity in React.
     }
   };
 
